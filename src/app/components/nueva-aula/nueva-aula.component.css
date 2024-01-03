@@ -1,0 +1,37 @@
+.general{
+    max-width: 100%;
+    max-height: 84.5vh;
+}
+h1{
+    text-align: center;
+    padding-top: 2%;
+    margin-bottom: 2%;
+}
+.form{
+    max-width: 100%;
+    height: 68vh;
+    margin-left: 10%;
+}
+.formulario{
+    overflow: scroll;    
+}
+
+p{
+    margin-bottom: 2%;
+}
+span{
+    margin-right: 1%;
+}
+.class-columna{
+    margin-left: 3.5%;
+}
+.filas-columnas,
+.sitios-rotos{
+    margin-top: -1%;
+    margin-bottom: 2%;
+}
+
+.boton-reset,
+.boton-atras{
+    margin-left: 2%;
+}

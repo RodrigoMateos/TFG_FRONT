@@ -1,0 +1,14 @@
+.portada{
+    padding-top: 5%;
+    height: inherit;
+}
+article{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    width: 70%;
+    margin-left: 26%;   
+}
+article ul{
+    padding-left: 10%;
+    padding-top: 1%;
+}

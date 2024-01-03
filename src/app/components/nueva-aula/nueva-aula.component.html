@@ -1,0 +1,72 @@
+<div class="general">
+    <h1>Crear aula en {{campus}}</h1>
+    <div class="formulario">
+        <form class="form" [formGroup]="miFormulario" (submit)="onSubmit(miFormulario.value)">
+            <p>
+                <span>Tipo de aula</span>
+                <select name="tipoAula" formControlName="tipoAula">
+                    <option value="NORMAL" selected>Normal</option>
+                    <option value="CURVA" >Curva</option>
+                </select>
+            </p>
+            <p>
+                <span>Edificio</span>
+                <select name="selectEdificio" formControlName="edificio" (blur)=getActualizar(miFormulario.value.edificio)>
+                    <option *ngFor="let edificio of listNombresEdificios" >{{edificio}}</option>
+                </select>
+            </p>
+            <p>
+                <span>Planta</span>
+                <select for="nombre" formControlName="planta">
+                    <option *ngFor="let planta of listPlantas">{{planta}}</option>
+                </select>
+            </p>
+            <p>
+                <span for="filas">Filas</span>
+                <input type="number" name="filas" formControlName="filas"/>
+                <span class="class-columna" for="columnas">Columnas</span>
+                <input type="number" name="columnas" formControlName="columnas" />
+            </p>
+            <div *ngIf="miFormulario.value.columnas > 0 ">
+                <div formArrayName="listaFilas">
+                    <div class="numColum" *ngFor="let columna of getColumnas(miFormulario.value.columnas);let pointIndex=index" [formGroupName]="pointIndex">
+                        <p class="filas-columnas">
+                            <span for="colum-index">Columnas de la {{columna}} columna: </span>
+                            <input type="number" formControlName="fila"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="tipoRotos == 'Inicial'">
+                <br/><h3>ASIENTOS ROTOS</h3><br/>
+                <input type="button" value="Introducir manualmente" (click)="getTipoRotos(miFormulario.value, 'Manual')"/>
+                <!--<input type="button" value="Introducir manualmente" [routerLink]="['/aula', nombreEdificio, campusId, c]" />-->
+                <input type="button" class='boton-reset' value="Introducir automaticamente" (click)="getTipoRotos(miFormulario.value, 'Numerico')"/>
+                <input type="button" class='boton-reset' value="No hay rotos" (click)="getTipoRotos('', 'sinRotos')"/>
+            </div>
+            <div *ngIf="tipoRotos == 'Numerico'">
+                <br/><h3>ASIENTOS ROTOS</h3><br/>
+                <p>
+                    <span class="class-rotos" for="rotos">Asientos Rotos</span>
+                    <input type="number" min="0" max="10" name="rotos" formControlName="rotos" />
+                </p>      
+                <div *ngIf="miFormulario.value.rotos > 0 ">
+                    <div formArrayName="listaRotos">
+                        <div class="numInh" *ngFor="let columna of getRotos(miFormulario.value.rotos);let pointIndex=index" [formGroupName]="pointIndex">
+                            <p class="sitios-rotos">
+                                <span for="class-columna">Fila: </span>
+                                <input type="number" formControlName="fila"/>
+                                <span for="class-columna">Columna: </span>
+                                <input type="number" formControlName="columna"/>
+                            </p>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <div *ngIf="tipoRotos == 'Numerico' || tipoRotos == 'sinRotos'">
+                <input type="submit" value="Enviar"/>
+                <input type="reset" class='boton-reset' value="Limpiar" (onClick)="ngOnInit()"/>
+            </div>
+        </form>
+    </div>
+</div>

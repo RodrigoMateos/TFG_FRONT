@@ -1,0 +1,27 @@
+<div class="pintar-aulas">
+    <h1>Aula {{clase}} {{campus}}</h1>
+    <div class="pizarra">PIZARRA</div>
+    <div class="clase" *ngFor="let columnas of distribucion">
+        <div class="columnas">
+            <div class="contenido">
+                <span class="filas" *ngFor="let sitio of columnas">
+                    <span class="sitios-bueno" *ngIf="sitio==0;else firstElse">&nbsp;&nbsp;</span>
+                    <ng-template #firstElse>
+                        <span class="sitios-malo" *ngIf="sitio==1;else secondElse">&nbsp;&nbsp;</span>
+                        <ng-template #secondElse>
+                            <span class="pasillo">&nbsp;&nbsp;</span>
+                        </ng-template>
+                    </ng-template>
+                </span>
+            </div>
+            <br/><br/>
+        </div>
+    </div>
+    <div class="small_foto" *ngIf="tipoClase==1">
+        <img class="foto" src="../assets/img/small_clase.jpg"/>
+    </div>
+    <div class="botones">
+        <button [routerLink]="['/clase', edificio, campusId, clase]" class="boton-editar">Editar</button>
+        <button [routerLink]="['/campus', campusId]" class="boton-atras">Atras</button>
+    </div>
+</div>

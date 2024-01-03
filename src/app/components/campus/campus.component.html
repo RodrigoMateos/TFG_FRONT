@@ -1,0 +1,35 @@
+<div class="campus">
+    <h1>{{campus}}</h1>
+    <div class="botones">
+        <div *ngIf="!mostrarAulas">        
+            <a (click)="getMostrarAula(true)" class="botones-campus">Ver Aulas</a>
+        </div>
+        <div *ngIf="mostrarAulas">        
+            <a (click)="getMostrarAula(false)" class="botones-campus">Ocultar Aulas</a>
+        </div>    
+        <a [routerLink]="['/crear-aula', campusId]" class="botones-campus">Crear Aulas</a>
+    </div>
+</div>
+<br/>
+<div *ngIf="mostrarAulas">
+    <div class="mostrarAula">
+        <h1>EDIFICIOS</h1>
+        <div class="edificio" *ngFor="let edificio of nombreEdificios">
+            <p class="nombreEdificios" #edificioSeleccionado (click)="seleccionarEdificio(edificio, edificioSeleccionado)">{{edificio}}</p>
+        </div>
+    </div>
+    <br/><br/><br/>
+    <div class="mostrarPlanta" *ngIf="mostrarPlantas">
+        <h1>PLANTA</h1><br/>
+        <div class="planta" *ngFor="let planta of plantas">
+            <p class="nombrePlantas" #edificioPlanta (click)="seleccionarPlanta(planta, edificioPlanta)">{{planta}}</p>
+        </div>
+    </div>
+    <br/><br/>
+    <div class="mostrarClases" *ngIf="mostrarClases">
+        <h1>CLASES</h1><br/>
+        <div class="clases" *ngFor="let c of clases2">
+            <a class="nombreClases" [routerLink]="['/aula', nombreEdificio, campusId, c]">{{c}} </a>
+        </div>
+    </div>
+</div>
