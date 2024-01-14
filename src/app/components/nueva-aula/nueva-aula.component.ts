@@ -284,6 +284,10 @@ export class NuevaAulaComponent implements OnInit {
     return this.mensajeError;
   }
 
+  castearNegativos(id, valorPr){
+    console.log("Pulsado el boton "+id+" con valor "+valorPr)
+  }
+
   rellenarMaximos(form){
 
     let array = this.cleanArray(form.listaFilas);  

@@ -23,11 +23,13 @@
             </p>
             <p>
                 <span for="filas">Filas</span>
-                <input type="number" name="filas" formControlName="filas"/>
+                <!--<input id="filaId" type="number" name="filas" formControlName="filas" (keyup)="castearNegativos('filaId', this)"/>-->
+                <input id="filaId" type="number" name="filas" formControlName="filas" (keyup)="castearNegativos('filaId', this)"/>
                 <span class="class-columna" for="columnas">Columnas</span>
-                <input type="number" name="columnas" formControlName="columnas" />
+                <!--<input id="columnaId" type="number" name="columnas" formControlName="columnas" onkeyup="castearNegativos('columnaId', document.getElementById('columnaId').value)"/>-->
+                <input id="columnaId" type="number" name="columnas" formControlName="columnas" onkeyup="castearNegativos('columnaId', document.getElementById('columnaId').value)"/>
             </p>
-            <div *ngIf="miFormulario.value.columnas > 0 ">
+            <div *ngIf="miFormulario.value.columnas > 0 "> 
                 <div formArrayName="listaFilas">
                     <div class="numColum" *ngFor="let columna of getColumnas(miFormulario.value.columnas);let pointIndex=index" [formGroupName]="pointIndex">
                         <p class="filas-columnas">
